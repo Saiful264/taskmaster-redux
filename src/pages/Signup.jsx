@@ -30,8 +30,8 @@ const Signup = () => {
 
   const onSubmit = ({ name, email, password }) => {
     // Email Password signup
-    dispatch(createUser({ email, password }));
-    console.log("signup page 34" ,name, email, password);
+    dispatch(createUser({ email, password, name }));
+    console.log("signup page 34", name, email, password);
   };
 
   const handleGoogleLogin = () => {
