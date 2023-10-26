@@ -3,7 +3,7 @@ import loginImage from "../assets/image/login.svg";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../redux/features/user/userSlice";
+import { createUser, goolgelogin } from "../redux/features/user/userSlice";
 import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
@@ -50,6 +50,7 @@ const Signup = () => {
 
   const handleGoogleLogin = () => {
     // Google Login
+    dispatch(goolgelogin());
   };
 
   return (

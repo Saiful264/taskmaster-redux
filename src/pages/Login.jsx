@@ -1,13 +1,28 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import loginImage from '../assets/image/login.svg';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../redux/features/user/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { goolgelogin, loginUser } from '../redux/features/user/userSlice';
+import { useEffect } from 'react';
+import toast, { Toaster } from "react-hot-toast";
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
+  const { isLoading, isError, error, email } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isError && error) {
+      toast.error(error);
+    }
+  }, [isError, error]);
+
+  useEffect(()=>{
+    if (!isLoading && email) {
+      navigate('/');
+    }
+  },[email, isLoading, navigate])
 
   const onSubmit = ({ email, password }) => {
     // Email Password Login
@@ -16,11 +31,13 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    //  Google Login
+    // Google Login
+    dispatch(goolgelogin());
   };
 
   return (
     <div className="flex max-w-7xl h-screen items-center mx-auto">
+    <Toaster />
       <div className="w-1/2">
         <img src={loginImage} className="h-full w-full" alt="" />
       </div>
