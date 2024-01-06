@@ -13,7 +13,9 @@ const Signup = () => {
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
 
-  const { isLoading, isError, error, email } = useSelector((state) => state.userSlice);
+  const { isLoading, isError, error, email } = useSelector(
+    (state) => state.userSlice
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,16 +38,16 @@ const Signup = () => {
     }
   }, [isError, error]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (!isLoading && email) {
-      navigate('/');
+      navigate("/");
     }
-  },[email, isLoading, navigate])
+  }, [email, isLoading, navigate]);
 
   const onSubmit = ({ name, email, password }) => {
     // Email Password signup
     dispatch(createUser({ email, password, name }));
-    console.log("signup page 34", name, email, password);
+    // console.log("signup page 34", name, email, password);
   };
 
   const handleGoogleLogin = () => {

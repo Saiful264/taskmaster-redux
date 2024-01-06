@@ -1,15 +1,17 @@
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import loginImage from '../assets/image/login.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { goolgelogin, loginUser } from '../redux/features/user/userSlice';
-import { useEffect } from 'react';
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import loginImage from "../assets/image/login.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { goolgelogin, loginUser } from "../redux/features/user/userSlice";
+import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  const { isLoading, isError, error, email } = useSelector((state) => state.userSlice);
+  const { isLoading, isError, error, email } = useSelector(
+    (state) => state.userSlice
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,16 +20,16 @@ const Login = () => {
     }
   }, [isError, error]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (!isLoading && email) {
-      navigate('/');
+      navigate("/");
     }
-  },[email, isLoading, navigate])
+  }, [email, isLoading, navigate]);
 
   const onSubmit = ({ email, password }) => {
     // Email Password Login
-    dispatch(loginUser({email, password}))
-    console.log(email, password);
+    dispatch(loginUser({ email, password }));
+    // console.log(email, password);
   };
 
   const handleGoogleLogin = () => {
@@ -37,7 +39,7 @@ const Login = () => {
 
   return (
     <div className="flex max-w-7xl h-screen items-center mx-auto">
-    <Toaster />
+      <Toaster />
       <div className="w-1/2">
         <img src={loginImage} className="h-full w-full" alt="" />
       </div>
@@ -51,7 +53,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 className="w-full rounded-md"
-                {...register('email')}
+                {...register("email")}
               />
             </div>
             <div className="flex flex-col items-start">
@@ -60,7 +62,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 className="w-full rounded-md"
-                {...register('password')}
+                {...register("password")}
               />
             </div>
             <div className="relative !mt-8">
@@ -70,10 +72,10 @@ const Login = () => {
             </div>
             <div>
               <p>
-                Don&apos;t have an account?{' '}
+                Don&apos;t have an account?{" "}
                 <span
                   className="text-primary hover:underline cursor-pointer"
-                  onClick={() => navigate('/signup')}
+                  onClick={() => navigate("/signup")}
                 >
                   Sign up
                 </span>

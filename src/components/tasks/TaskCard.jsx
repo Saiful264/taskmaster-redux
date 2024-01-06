@@ -5,8 +5,8 @@ const TaskCard = ({ task }) => {
   // const dispatch = useDispatch();
   const [updateTask, { data, error }] = useUpdateTaskMutation();
 
-  console.log("data", data);
-  console.log("error", error);
+  // console.log("data", data);
+  // console.log("error", error);
 
   const handleUpdate = (id, updatedStatus) => {
     const data = {
@@ -49,7 +49,10 @@ const TaskCard = ({ task }) => {
           <button onClick={() => console.log("remove")} title="Delete">
             <TrashIcon className="h-5 w-5 text-red-500" />
           </button>
-          <button onClick={() => handleUpdate(task._id, updatedStatus)} title="Update Status">
+          <button
+            onClick={() => handleUpdate(task._id, updatedStatus)}
+            title="Update Status"
+          >
             <ArrowRightIcon className="h-5 w-5 text-primary" />
           </button>
         </div>
